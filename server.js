@@ -7,6 +7,7 @@ dotenv.config();
 import "express-async-errors";
 import morgan from "morgan";
 import mongoSanitize from "express-mongo-sanitize";
+import fs from "fs";
 
 // routes
 import FileUploadRoute from "./routes/fileUploadRoute.js";
@@ -22,6 +23,10 @@ const BASE_URL_PATH = "/api/v1/";
 const CONNECTION_URL =
   process.env.EXPAPP_MONGO_URL || process.env.EXPAPP_MONGO_LOCAL_URL;
 const PORT = process.env.PORT || process.env.EXPAPP_PORT || 5000;
+
+if (!fs.existsSync("./uploads")) {
+  fs.mkdirSync("./uploads");
+}
 
 const app = express();
 
