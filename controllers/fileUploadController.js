@@ -14,13 +14,13 @@ export const ModelUpload = async (req, res) => {
   const groupId = crypto.randomBytes(12).toString("hex");
 
   const fileDetails = req.file;
-  const fileType = fileDetails.originalname.split(".").at(-1).toLowerCase();
+  // const fileType = fileDetails.originalname.split(".").at(-1).toLowerCase();
   const fileRes = await fileModel.create({
     uid,
     originalName: fileDetails.originalname,
     fileName: fileDetails.filename,
     size: fileDetails.size,
-    fileType,
+    // fileType,
     groupId,
     mainFile: true,
   });
