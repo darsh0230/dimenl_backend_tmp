@@ -4,32 +4,29 @@ import { BadRequestError, UnauthenticatedError } from "../utils/errors.js";
 import fileModel from "../models/fileModel.js";
 
 export const ModelUpload = async (req, res) => {
-  console.log("file Uploaded");
-  console.log(req.file);
-
   const { uid } = req.body;
   if (!uid) throw new BadRequestError("Please provide uid");
 
   // TODO: check for duplicate group id
   const groupId = crypto.randomBytes(12).toString("hex");
 
-  const fileDetails = req.file;
-  const delimiter = ".";
-  const fileType = fileDetails.originalname
-    .split(delimiter)
-    .at(-1)
-    .toLowerCase();
-  const fileRes = await fileModel.create({
-    uid,
-    originalName: fileDetails.originalname,
-    fileName: fileDetails.filename,
-    size: fileDetails.size,
-    fileType,
-    groupId,
-    mainFile: true,
-  });
+  // const fileDetails = req.file;
+  // const delimiter = ".";
+  // const fileType = fileDetails.originalname
+  //   .split(delimiter)
+  //   .at(-1)
+  //   .toLowerCase();
+  // const fileRes = await fileModel.create({
+  //   uid,
+  //   originalName: fileDetails.originalname,
+  //   fileName: fileDetails.filename,
+  //   size: fileDetails.size,
+  //   fileType,
+  //   groupId,
+  //   mainFile: true,
+  // });
   res.status(StatusCodes.OK).json({
-    result: fileRes,
+    result: req.file,
   });
 };
 
