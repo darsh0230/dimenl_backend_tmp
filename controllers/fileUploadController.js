@@ -13,23 +13,23 @@ export const ModelUpload = async (req, res) => {
   // TODO: check for duplicate group id
   const groupId = crypto.randomBytes(12).toString("hex");
 
-  // const fileDetails = req.file;
-  // const delimiter = ".";
-  // const fileType = fileDetails.originalname
-  //   .split(delimiter)
-  //   .at(-1)
-  //   .toLowerCase();
-  // const fileRes = await fileModel.create({
-  //   uid,
-  //   originalName: fileDetails.originalname,
-  //   fileName: fileDetails.filename,
-  //   size: fileDetails.size,
-  //   fileType,
-  //   groupId,
-  //   mainFile: true,
-  // });
+  const fileDetails = req.file;
+  const delimiter = ".";
+  const fileType = fileDetails.originalname
+    .split(delimiter)
+    .at(-1)
+    .toLowerCase();
+  const fileRes = await fileModel.create({
+    uid,
+    originalName: fileDetails.originalname,
+    fileName: fileDetails.filename,
+    size: fileDetails.size,
+    fileType,
+    groupId,
+    mainFile: true,
+  });
   res.status(StatusCodes.OK).json({
-    result: req.file.toString(),
+    result: fileRes,
   });
 };
 
