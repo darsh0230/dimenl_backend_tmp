@@ -4,6 +4,9 @@ import { BadRequestError, UnauthenticatedError } from "../utils/errors.js";
 import fileModel from "../models/fileModel.js";
 
 export const ModelUpload = async (req, res) => {
+  console.log("file Uploaded");
+  console.log(req.file);
+
   const { uid } = req.body;
   if (!uid) throw new BadRequestError("Please provide uid");
 

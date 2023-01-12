@@ -26,6 +26,7 @@ const PORT = process.env.PORT || process.env.EXPAPP_PORT || 5000;
 
 if (!fs.existsSync("./uploads")) {
   fs.mkdirSync("./uploads");
+  console.log("upload folder created");
 }
 
 const app = express();
